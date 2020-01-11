@@ -1,0 +1,44 @@
+// ==============================================
+// Names : Rowan Tilroe, Filippo Ciandy
+// IDs: 1629172, 1641346
+// CMPUT 274, Fall 2019
+// Assignment 2 (PART 2): Encrypted Communication
+// ==============================================
+
+Included Files:
+* encrypted_communication_part2.cpp
+* README
+* Makefile
+
+Wiring Instructions:
+* GND Arduino A <--> GND Arduino B
+* TX3 Arduino A <--> RX3 Arduino B
+* TX3 Arduino B <--> RX3 Arduino A
+* 5V Arduino A <--> Pin 13 Arduino A
+* GND Arduino B <--> Pin 13 Arduino B
+
+Accessories:
+* Minimum of 5 cables
+* 2 Arduino mega 2560
+
+Running Instructions:
+* Connect both Arduino's to the PC using an A-B style USB cable. Ensure that the Arduino is using the proper serial port (/dev/ttyACM0  or -ACM1).
+* In the directory containing the files encrypted_communication_part1.cpp, Makefile and README. Open 2 two bash terminals and Use command "make upload-0 && serial-mon-0" on one terminal and "make upload-1 && serial-mon-1" on the other terminal.
+* Wait for both serial monitors to print "Ready to chat" before typing in characters.
+
+Notes and assumptions:
+* Assumes both Arduino's are working properly.
+* Assumes cables are working and connected properly.
+* Used gcd_euclid_fast function from eclass.
+* Used primality test function developed in a morning problem by Rowan.
+* Used upper_sqrt function inside the primality test morning problem.
+* The extended euclidean algorithmn function (generate_d) was inspired by the psuedocode on the extended euclidean algorithm worksheet.
+* Used the given functions in the assignment description (wait_on_serial3,uint32_to_serial3,uint32_from_serial3).
+* In the generate_d function, if 'd' was found to be negative, we added 'phin' until d is positive to maintian congreuncy with 'phin'.
+* The main function has 3 phases: 
+	1. Genereate the arduino's personal encryption and decryption keys as well as their modulus. 
+	2. The handshake protocol which differs depending on whether the arduino is the server or the client. 
+	3. Once the encryption key and modulus have been exchanged between server and client, proceed to the chatting phase.
+* If the client arduino's is reset and the server has not been reset, random characters appear on the serial mon of the server as a result of the client's connection request. Both arduino's must be reset to form a new connection.
+* We used our developed part 1 to do part 2.
+* Prints generated values of d,e,n to serial monitor.
